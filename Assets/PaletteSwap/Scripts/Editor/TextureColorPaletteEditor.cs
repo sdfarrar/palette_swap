@@ -13,7 +13,6 @@ public class TextureColorPaletteEditor : Editor {
     SerializedProperty activeSwatchesProp;
 
     GUIContent paletteTextureLabel = new GUIContent("Palette Texture");
-    GUIContent colorArrayLabel = new GUIContent("Swatches");
 
     void OnEnable() {
         palette = (TextureColorPalette)target;

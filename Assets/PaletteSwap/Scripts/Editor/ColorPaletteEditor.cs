@@ -12,7 +12,6 @@ public class ColorPaletteEditor : Editor {
     SerializedProperty colorArrayProp;
     SerializedProperty activeSwatchesProp;
 
-    GUIContent colorArrayLabel = new GUIContent("Colors");
     GUILayoutOption[] buttonOptions = new GUILayoutOption[]{GUILayout.Width(125), GUILayout.Height(50)};
 
     int minActiveSwatches;
