@@ -15,11 +15,25 @@ public class TextureColorPalette : ColorPalette {
 
     public void GenerateColors() {
         if(!PaletteTexture) { return; }
-    
+
+        activeSwatches = UpdateColors();
+        ClearColors();
+
+    }
+
+    private int UpdateColors() {
+        int index = 0;
         Color[] pixels = PaletteTexture.GetPixels();
-        colors = new List<Color>();
         for(int i=0; i<pixels.Length; i+=PixelsPerSwatch){
-            colors.Add(pixels[i]);
+            colors[index++] = pixels[i];
+        }
+        return index;
+
+    }
+
+    private void ClearColors() {
+        for(int i=activeSwatches; i<colors.Length; ++i){
+            colors[i] = Color.clear;
         }
     }
 

@@ -18,5 +18,6 @@ MonoBehaviour:
   - {r: 1, g: 0.627451, b: 0.26666668, a: 1}
   - {r: 0.72156864, g: 0.972549, b: 0.09411765, a: 1}
   - {r: 0.89411765, g: 0.36078432, b: 0.0627451, a: 1}
+  activeSwatches: 5
   PaletteTexture: {fileID: 2800000, guid: 3364a442102aa9c4d839dbd69e0f2cf1, type: 3}
   PixelsPerSwatch: 1

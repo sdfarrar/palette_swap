@@ -6,7 +6,11 @@ using UnityEngine;
 public class ColorPalette : ScriptableObject {
 
     [SerializeField]
-    protected List<Color> colors;
+    protected Color[] colors = new Color[16];
+
+    [SerializeField]
+    [Range(0, 16)]
+    protected int activeSwatches = 0;
 
     public void ApplyColorPalette(Material mat) {
         SetMaterialMatrix(mat);
@@ -14,8 +18,8 @@ public class ColorPalette : ScriptableObject {
 
     private void SetMaterialMatrix(Material mat) {
         if(!mat){ return; }
-        mat.SetInt("_ColorArrayCount", colors.Count);
-        mat.SetColorArray("_ColorArray", colors.ToArray());
+        mat.SetInt("_ColorArrayCount", activeSwatches);
+        mat.SetColorArray("_ColorArray", colors);
     }
 
 }
