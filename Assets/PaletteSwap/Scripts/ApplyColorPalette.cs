@@ -7,34 +7,20 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class ApplyColorPalette : MonoBehaviour {
 
-    private readonly string AppendShaderName = "Hidden/PaletteSwap";
-    private readonly string SpriteShaderName = "Sprite/PaletteSwap";
+    private static Shader AppendShader;
 
     public ColorPalette ColorPalette;
-    public bool AppendToMaterialList;
     private new SpriteRenderer renderer;
-
-    private Material[] materials {
-        get {
-            return new Material[]{
-                new Material(Shader.Find("Sprites/Default")),
-                new Material(Shader.Find(AppendShaderName)),
-            };
-        }
-    }
 
     private Material _mat;
     [SerializeField]
     private Material mat {
         get{
-            if(!_mat){
-                _mat = (AppendToMaterialList) 
-                    ? new Material(Shader.Find(AppendShaderName))
-                    : new Material(Shader.Find(SpriteShaderName));
-            }
+            if(_mat){ return _mat; }
+            if(!AppendShader) { AppendShader = Shader.Find("Hidden/PaletteSwap"); }
+            _mat = new Material(AppendShader);
             return _mat;
         }
-        set{_mat = value;}
     }
 
     private int materialIndex = 0;
@@ -61,7 +47,7 @@ public class ApplyColorPalette : MonoBehaviour {
 #endif
 
     private void AppendMaterials() {
-        if(!renderer || !AppendToMaterialList){ return; }
+        if(!renderer){ return; }
 #if UNITY_EDITOR
         Material[] materials = (Material[])renderer.sharedMaterials.Clone();
         renderer.sharedMaterials = CreateNewMaterialList(materials);
@@ -86,21 +72,12 @@ public class ApplyColorPalette : MonoBehaviour {
 
     private void Apply() {
         if(!this.enabled || !this.renderer || !ColorPalette){ return; } 
-        if(AppendToMaterialList){
             AppendMaterials();
 #if UNITY_EDITOR
             ColorPalette.ApplyColorPalette(renderer.sharedMaterials[materialIndex]);
 #else
             ColorPalette.ApplyColorPalette(renderer.materials[materialIndex]);
 #endif
-
-        }else{
-#if UNITY_EDITOR
-            ColorPalette.ApplyColorPalette(renderer.sharedMaterials[materialIndex]);
-#else
-            ColorPalette.ApplyColorPalette(renderer.materials[materialIndex]);
-#endif
-        }
     }
 
 }
