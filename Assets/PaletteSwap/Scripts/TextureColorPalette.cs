@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName="New Texture Palette", menuName="Palettes/Texture Palette")]
 public class TextureColorPalette : ColorPalette {
 
+    [Tooltip("Palette texture. Assumes texture is 1 pixel tall.")]
     public Texture2D PaletteTexture;
-    [Range(1, 8)]
-    public int PixelsPerSwatch = 1;
 
     private void OnEnable() {
         GenerateColors();
@@ -24,7 +21,8 @@ public class TextureColorPalette : ColorPalette {
     private int UpdateColors() {
         int index = 0;
         Color[] pixels = PaletteTexture.GetPixels();
-        for(int i=0; i<pixels.Length; i+=PixelsPerSwatch){
+        int length = Mathf.Min(pixels.Length, MAX_COLORS);
+        for(int i=0; i<length; ++i){
             colors[index++] = pixels[i];
         }
         return index;

@@ -12,12 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1795ab3e0424d2e419d833ecc2e077a7, type: 3}
   m_Name: BlueTexturePalette
   m_EditorClassIdentifier: 
+  SwatchTemplate: {fileID: 11400000, guid: ff2312b9fdcfe7a44930ceae9df46d3d, type: 2}
   colors:
   - {r: 0.72156864, g: 0.72156864, b: 0.972549, a: 1}
   - {r: 0.89411765, g: 0.36078432, b: 0.0627451, a: 1}
   - {r: 1, g: 0.627451, b: 0.26666668, a: 1}
   - {r: 0, g: 0, b: 0.7372549, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
   activeSwatches: 5
   PaletteTexture: {fileID: 2800000, guid: 0a1ebe42f43c2f6448174ea9fb93cb2b, type: 3}
-  PixelsPerSwatch: 1

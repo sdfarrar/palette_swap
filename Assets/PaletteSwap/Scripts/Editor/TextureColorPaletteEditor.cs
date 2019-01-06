@@ -4,21 +4,18 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(TextureColorPalette))]
-public class TextureColorPaletteEditor : Editor {
+public class TextureColorPaletteEditor : AbstractPaletteEditor {
 
     TextureColorPalette palette;
 
     SerializedProperty paletteTextureProp;
-    SerializedProperty colorArrayProp;
-    SerializedProperty activeSwatchesProp;
 
     GUIContent paletteTextureLabel = new GUIContent("Palette Texture");
 
     void OnEnable() {
+        Initialize();
         palette = (TextureColorPalette)target;
         paletteTextureProp = serializedObject.FindProperty("PaletteTexture");
-        colorArrayProp = serializedObject.FindProperty("colors");
-        activeSwatchesProp = serializedObject.FindProperty("activeSwatches");
     }
 
     public override void OnInspectorGUI() {
@@ -28,7 +25,8 @@ public class TextureColorPaletteEditor : Editor {
 
         DrawTextureSection();
         EditorGUILayout.Space();
-        DrawColorArray();
+        EditorGUILayout.PropertyField(swatchTemplateProp);
+        DrawColorArray(palette);
 
         if(EditorGUI.EndChangeCheck()){
             serializedObject.ApplyModifiedProperties();
@@ -44,13 +42,6 @@ public class TextureColorPaletteEditor : Editor {
 
         if(paletteTextureProp.objectReferenceValue!=palette.PaletteTexture){
             palette.GenerateColors();
-        }
-    }
-
-    private void DrawColorArray() {
-        for(int i=0; i<activeSwatchesProp.intValue; ++i){
-            Color c = colorArrayProp.GetArrayElementAtIndex(i).colorValue;
-            colorArrayProp.GetArrayElementAtIndex(i).colorValue = EditorGUILayout.ColorField($"Swatch {i}", c);
         }
     }
 
