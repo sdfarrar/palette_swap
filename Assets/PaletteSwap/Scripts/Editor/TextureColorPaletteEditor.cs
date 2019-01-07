@@ -11,6 +11,7 @@ public class TextureColorPaletteEditor : AbstractPaletteEditor {
     SerializedProperty paletteTextureProp;
 
     GUIContent paletteTextureLabel = new GUIContent("Palette Texture");
+    bool isTextureReadable;
 
     void OnEnable() {
         Initialize();
@@ -21,9 +22,13 @@ public class TextureColorPaletteEditor : AbstractPaletteEditor {
     public override void OnInspectorGUI() {
         serializedObject.Update();
 
+        isTextureReadable = (palette.PaletteTexture!=null) ? palette.PaletteTexture.isReadable : false;
+
         EditorGUI.BeginChangeCheck();
 
+
         DrawTextureSection();
+        
         EditorGUILayout.Space();
         EditorGUILayout.PropertyField(swatchTemplateProp);
         DrawColorArray(palette);
@@ -36,13 +41,22 @@ public class TextureColorPaletteEditor : AbstractPaletteEditor {
 
     private void DrawTextureSection() {
         EditorGUILayout.PropertyField(paletteTextureProp, paletteTextureLabel);
+        DrawNotReadableWarning();
+
+        GUI.enabled = isTextureReadable;
         if(GUILayout.Button("Generate From Texture")) {
             palette.GenerateColors();
         }
+        GUI.enabled = true;
 
-        if(paletteTextureProp.objectReferenceValue!=palette.PaletteTexture){
+        if(isTextureReadable && paletteTextureProp.objectReferenceValue!=palette.PaletteTexture){
             palette.GenerateColors();
         }
+    }
+
+    private void DrawNotReadableWarning() {
+        if(isTextureReadable){ return; }
+        EditorGUILayout.HelpBox("Texture is not readable. Tick the \"Read/Write Enabled\" checkbox in the Texture Settings.", MessageType.Warning);
     }
 
 }
