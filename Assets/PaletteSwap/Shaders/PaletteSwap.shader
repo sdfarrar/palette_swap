@@ -2,7 +2,8 @@
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        _Color ("Tint", Color) = (1,1,1,1)
+        [HideInInspector]_MainTex ("Texture", 2D) = "white" {}
         [HideInInspector]_BlendSrcMode ("BlendSrcMode", Float) = 1  // One
         [HideInInspector]_BlendDstMode ("BlendDstMode", Float) = 10 // OneMinusSrcAlpha
     }
@@ -34,11 +35,13 @@
 
             struct appdata {
                 float4 vertex : POSITION;
+                float4 color : COLOR;
                 float2 uv : TEXCOORD0;
             };
 
             struct v2f {
                 float2 uv : TEXCOORD0;
+                half4 color : TEXCOORD1;
                 float4 vertex : SV_POSITION;
             };
 
@@ -46,11 +49,13 @@
 
             int _ColorArrayCount = 0;
             half4 _ColorArray[16];
+            half4 _Color;
 
             v2f vert (appdata v) {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
+                o.color = _Color; // comment out for neato effect
                 return o;
             }
 
@@ -63,7 +68,7 @@
 
 			fixed4 frag(v2f IN) : SV_Target {
                 fixed4 c = MatrixPaletteSwap(IN.uv);
-				return c;
+				return c * IN.color;
 			}
             ENDCG
         }
