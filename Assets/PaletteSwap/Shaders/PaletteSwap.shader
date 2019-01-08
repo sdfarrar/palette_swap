@@ -55,7 +55,7 @@
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
-                o.color = _Color; // comment out for neato effect
+                o.color = _Color;
                 return o;
             }
 

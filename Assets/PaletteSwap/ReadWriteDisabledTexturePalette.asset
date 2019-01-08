@@ -31,4 +31,4 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   activeSwatches: 0
-  PaletteTexture: {fileID: 2800000, guid: ee51efd34fe8bd44a903e6ba5e7f4a76, type: 3}
+  PaletteTexture: {fileID: 2800000, guid: 3364a442102aa9c4d839dbd69e0f2cf1, type: 3}

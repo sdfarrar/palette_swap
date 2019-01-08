@@ -3,7 +3,7 @@
 [CreateAssetMenu(fileName="New Texture Palette", menuName="Palettes/Texture Palette")]
 public class TextureColorPalette : ColorPalette {
 
-    [Tooltip("Palette texture. Assumes texture is 1 pixel tall.")]
+    [Tooltip("Palette texture. Assumes swatches are 1x1 px.")]
     public Texture2D PaletteTexture;
 
     private void OnEnable() {
@@ -13,12 +13,16 @@ public class TextureColorPalette : ColorPalette {
     public void GenerateColors() {
         if(!PaletteTexture) { return; }
 
-        activeSwatches = UpdateColors();
-        ClearColors();
-
+        if(PaletteTexture.isReadable) {
+            activeSwatches = UpdateColors();
+            ClearColors();
+        } else {
+            Debug.LogWarning("PaletteTexture is not readable! Enable Read/Write for texture!");
+        }
     }
 
     private int UpdateColors() {
+
         int index = 0;
         Color[] pixels = PaletteTexture.GetPixels();
         int length = Mathf.Min(pixels.Length, MAX_COLORS);
