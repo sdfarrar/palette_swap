@@ -25,7 +25,10 @@ public class PaletteSwapImageEffect : MonoBehaviour
 	}
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
-        ColorPalette.ApplyColorPalette(mat);
+        //if(ColorPalette == null) { return; }
+        if(ColorPalette) {
+            ColorPalette.ApplyColorPalette(mat);
+        }
 		Graphics.Blit(src, dst, mat);
 	}
 

@@ -9,16 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1795ab3e0424d2e419d833ecc2e077a7, type: 3}
-  m_Name: GreenTexturePalette
+  m_Script: {fileID: 11500000, guid: 04d45852836f5a94c92b0a94863bd0fd, type: 3}
+  m_Name: DownwellCustomPalette
   m_EditorClassIdentifier: 
-  SwatchTemplate: {fileID: 11400000, guid: ff2312b9fdcfe7a44930ceae9df46d3d, type: 2}
+  SwatchTemplate: {fileID: 11400000, guid: f431765f887f6bb4d8067e959fbfd5f6, type: 2}
   colors:
-  - {r: 0.72156864, g: 0.972549, b: 0.09411765, a: 1}
-  - {r: 0.89411765, g: 0.36078432, b: 0.0627451, a: 1}
-  - {r: 1, g: 0.627451, b: 0.26666668, a: 1}
-  - {r: 0.72156864, g: 0.972549, b: 0.09411765, a: 1}
-  - {r: 0.89411765, g: 0.36078432, b: 0.0627451, a: 1}
+  - {r: 0.12273052, g: 0.12407116, b: 0.13207549, a: 1}
+  - {r: 0.15686274, g: 0.3530667, b: 0.8039216, a: 1}
+  - {r: 1, g: 0.4796099, b: 0, a: 1}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
@@ -30,6 +28,6 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
-  activeSwatches: 5
-  PaletteTexture: {fileID: 2800000, guid: 3364a442102aa9c4d839dbd69e0f2cf1, type: 3}
-  PixelsPerSwatch: 1
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  activeSwatches: 3

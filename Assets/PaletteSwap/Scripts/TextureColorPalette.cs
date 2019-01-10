@@ -11,13 +11,11 @@ public class TextureColorPalette : ColorPalette {
     }
 
     public void GenerateColors() {
-        if(!PaletteTexture) { return; }
+        if(PaletteTexture==null) { return; }
 
         if(PaletteTexture.isReadable) {
             activeSwatches = UpdateColors();
             ClearColors();
-        } else {
-            Debug.LogWarning("PaletteTexture is not readable! Enable Read/Write for texture!");
         }
     }
 
